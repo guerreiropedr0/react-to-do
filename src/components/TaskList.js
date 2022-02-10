@@ -18,13 +18,23 @@ const TaskList = () => {
         },
       ],
     });
+    e.target.reset();
   };
 
   const handleClick = (id) => {
     const newList = tasks.everyTask.filter((task) => task.id !== id);
     setTasks({
-      everyTask: [...newList],
+      everyTask: newList,
     });
+  };
+
+  const handleChange = (e) => {
+    const newList = tasks.everyTask;
+    newList[e.target.id].body = e.target.value;
+    setTasks({
+      everyTask: newList,
+    });
+    console.log(tasks.everyTask);
   };
 
   return (
@@ -32,7 +42,7 @@ const TaskList = () => {
       <textarea type="text" placeholder="Things to do" />
       <input type="text" placeholder="Add Task" />
       <button type="button">Clear all completed</button>
-      <AddTask tasks={tasks} />
+      <AddTask tasks={tasks} handleChange={handleChange} />
       <RemoveTask tasks={tasks} handleClick={handleClick} />
     </form>
   );
