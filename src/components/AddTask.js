@@ -1,9 +1,14 @@
-const AddTask = ({ tasks }) => {
-  <div>
-    {tasks.everyTask.map((task) => (
-      <textarea key={task} defaultValue={task} />
-    ))}
-  </div>;
-};
+const AddTask = (props) => {
+  const prop = props;
 
+  return (
+    <div>
+      {prop.tasks.everyTask.length === 0
+        ? null
+        : prop.tasks.everyTask.map((task) => (
+          <textarea id={task.id} key={task.body} defaultValue={task.body} />
+        ))}
+    </div>
+  );
+};
 export default AddTask;
