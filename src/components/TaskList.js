@@ -23,18 +23,21 @@ const TaskList = () => {
 
   const handleClick = (id) => {
     const newList = tasks.everyTask.filter((task) => task.id !== id);
+    for (let i = id; i < newList.length; i += 1) {
+      newList[i].id -= 1;
+    }
+
     setTasks({
       everyTask: newList,
     });
   };
 
-  const handleChange = (e) => {
+  const handleBlur = (e) => {
     const newList = tasks.everyTask;
     newList[e.target.id].body = e.target.value;
     setTasks({
       everyTask: newList,
     });
-    console.log(tasks.everyTask);
   };
 
   return (
@@ -42,7 +45,7 @@ const TaskList = () => {
       <textarea type="text" placeholder="Things to do" />
       <input type="text" placeholder="Add Task" />
       <button type="button">Clear all completed</button>
-      <AddTask tasks={tasks} handleChange={handleChange} />
+      <AddTask tasks={tasks} handleBlur={handleBlur} />
       <RemoveTask tasks={tasks} handleClick={handleClick} />
     </form>
   );

@@ -7,7 +7,7 @@ const AddTask = (props) => {
         ? null
         : prop.tasks.everyTask.map((task) => (
           <textarea
-            onChange={prop.handleChange}
+            onBlur={prop.handleBlur}
             id={task.id}
             key={task.body}
             defaultValue={task.body}
