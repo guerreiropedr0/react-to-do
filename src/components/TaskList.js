@@ -40,11 +40,15 @@ const TaskList = () => {
     });
   };
 
+  const handleRemove = () => {};
+
   return (
     <form onSubmit={handleSubmit}>
       <textarea type="text" placeholder="Things to do" />
       <input type="text" placeholder="Add Task" />
-      <button type="button">Clear all completed</button>
+      <button onClick={handleRemove} type="button">
+        Clear all completed
+      </button>
       <AddTask tasks={tasks} handleBlur={handleBlur} />
       <RemoveTask tasks={tasks} handleClick={handleClick} />
     </form>
