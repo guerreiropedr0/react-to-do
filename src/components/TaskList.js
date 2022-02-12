@@ -15,6 +15,7 @@ const TaskList = () => {
         {
           body: e.target[1].value,
           id: tasks.everyTask.length,
+          checked: false,
         },
       ],
     });
@@ -40,7 +41,22 @@ const TaskList = () => {
     });
   };
 
-  const handleRemove = () => {};
+  const handleRemove = () => {
+    let newList = tasks.everyTask;
+    newList = newList.filter((task) => task.checked !== true);
+    newList.forEach((task, index) => (task.id = index));
+    setTasks({
+      everyTask: newList,
+    });
+  };
+
+  const handleCheck = (e) => {
+    const newList = tasks.everyTask;
+    newList[e.target.id].checked = e.target.checked;
+    setTasks({
+      everyTask: newList,
+    });
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -50,7 +66,7 @@ const TaskList = () => {
         Clear all completed
       </button>
       <AddTask tasks={tasks} handleBlur={handleBlur} />
-      <RemoveTask tasks={tasks} handleClick={handleClick} />
+      <RemoveTask tasks={tasks} handleClick={handleClick} handleCheck={handleCheck} />
     </form>
   );
 };

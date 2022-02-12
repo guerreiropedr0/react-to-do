@@ -5,7 +5,7 @@ const RemoveTask = (props) => {
     <div>
       {prop.tasks.everyTask.map((task) => (
         <div key={task.body} className="remove">
-          <input type="checkbox" />
+          <input id={task.id} onClick={prop.handleCheck} type="checkbox" />
           <button onClick={() => prop.handleClick(task.id)} type="button" key={task.body}>
             Remove
           </button>
