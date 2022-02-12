@@ -44,7 +44,10 @@ const TaskList = () => {
   const handleRemove = () => {
     let newList = tasks.everyTask;
     newList = newList.filter((task) => task.checked !== true);
-    newList.forEach((task, index) => (task.id = index));
+    for (let i = 0; i < newList.length; i += 1) {
+      newList[i].id = i;
+    }
+
     setTasks({
       everyTask: newList,
     });
