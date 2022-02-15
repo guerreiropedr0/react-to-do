@@ -1,10 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import AddTask from './AddTask';
 import RemoveTask from './RemoveTask';
 
 const TaskList = () => {
-  const [tasks, setTasks] = useState({
-    everyTask: [],
+  const [title, setTitle] = useState('Things to do');
+  const [tasks, setTasks] = useState(JSON.parse(localStorage.getItem('tasks')) || []);
+  useEffect(() => {
+    localStorage.setItem('tasks', JSON.stringify(tasks));
   });
 
   const handleSubmit = (e) => {
@@ -62,8 +64,12 @@ const TaskList = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <textarea type="text" placeholder="Things to do" />
+    <form className="task-list" onSubmit={handleSubmit}>
+      <textarea
+        type="text"
+        placeholder={title || 'Things to do'}
+        onBlur={(e) => setTitle(e.target.value)}
+      />
       <input type="text" placeholder="Add Task" />
       <button onClick={handleRemove} type="button">
         Clear all completed
