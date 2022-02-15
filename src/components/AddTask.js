@@ -2,7 +2,7 @@ const AddTask = (props) => {
   const prop = props;
 
   return (
-    <div>
+    <div className="tasks">
       {prop.tasks.everyTask.length === 0
         ? null
         : prop.tasks.everyTask.map((task) => (
